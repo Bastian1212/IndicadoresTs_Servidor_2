@@ -19,6 +19,9 @@ class Persistence {
             {
                 host: <string> process.env.DB_HOST,
                 dialect: <Dialect> process.env.DB_DRIVER
+
+                //host : localhost,
+                //dialect : mysql
             }
         );
 

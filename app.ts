@@ -1,9 +1,13 @@
 import express, { Express, Request, Response, Router } from 'express';
 import dotenv from 'dotenv'
 import UserModule from './src/modules/users/users.module';
+import IndicadorModule from "./src/modules/Indicadores/indicadores.module"
+import persistence from './src/persistence/config/persistence';
 
 
-class App {
+
+
+class  App  {
   public server;
   private port;
 
@@ -23,12 +27,16 @@ class App {
     });
   }
 
+  
+
   middlewares() {
     this.server.use(express.json());
   }
 
   routes() {
     this.server.use(UserModule.routes);
+    this.server.use(IndicadorModule.routes);
+    
   }
 }
 
