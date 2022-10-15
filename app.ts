@@ -1,4 +1,4 @@
-import express, { Express, Request, Response, Router } from 'express';
+import express, { Express, Request, Response, Router, Application } from 'express';
 import dotenv from 'dotenv'
 import UserModule from './src/modules/users/users.module';
 import IndicadorModule from "./src/modules/Indicadores/indicadores.module"
@@ -8,12 +8,12 @@ import persistence from './src/persistence/config/persistence';
 
 
 class  App  {
-  public server;
+  public server : Application;
   private port;
 
   constructor() {
     dotenv.config(); 
-    this.port = process.env.PORT;
+    this.port = process.env.PORT || 4000 ;
 
     console.log('initializing');
 

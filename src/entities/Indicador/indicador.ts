@@ -1,5 +1,5 @@
 export class Indicador{
-    public id: string;
+    public id: number;
     public CalificacionCORFO : string;
     public NumeroIndicador: string;
     public MisionUniversitaria : string;
@@ -16,7 +16,7 @@ export class Indicador{
     public antiguaid : string;
 
 
-    constructor(id : string,
+    constructor(id : number,
             CalificacionCORFO : string,
             NumeroIndicador : string,
             MisionUniversitaria : string,

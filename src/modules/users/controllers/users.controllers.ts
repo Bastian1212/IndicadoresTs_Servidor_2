@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+ import { Request, Response } from 'express';
 import { User } from '../../../entities/user';
 import UserRepository from './../../../persistence/repositories/user.repository';
 
