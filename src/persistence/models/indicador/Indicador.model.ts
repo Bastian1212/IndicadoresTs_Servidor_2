@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import { Indicador } from "../../../entities/Indicador/indicador";
+import { Indicador } from "../../../entities/indicador/indicador";
 import persistence from "../../config/persistence";
 
 class  IndicadorModel extends Model<Indicador> {
@@ -10,65 +10,68 @@ class  IndicadorModel extends Model<Indicador> {
 
 IndicadorModel.init({
     id: {
-        type : DataTypes.INTEGER.UNSIGNED,
+        type: DataTypes.STRING,
         autoIncrement: true,
         primaryKey: true,
     },
     CalificacionCORFO: {
-        type : DataTypes.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
-    }, 
-    NumeroIndicador : {
-        type : DataTypes.STRING,
+    },
+    NumeroIndicador: {
+        type: DataTypes.STRING,
         allowNull: false
     },
 
-    MisionUniversitaria : {
-        type : DataTypes.STRING,
+    MisionUniversitaria: {
+        type: DataTypes.STRING,
         allowNull: false
     },
 
-    nombre : { 
-        type : DataTypes.STRING,
+    nombre: {
+        type: DataTypes.STRING,
         allowNull: false
     },
-    TipoIndicador : {
-        type : DataTypes.STRING,
+    TipoIndicador: {
+        type: DataTypes.STRING,
         allowNull: false
     },
-    eje : { 
-        type : DataTypes.STRING,
-        allowNull: false
-    }, 
-    Unidad : { 
-        type : DataTypes.STRING,
-        allowNull: false
-    }, 
-    FuenteInformacion : { 
-        type : DataTypes.STRING,
+    eje: {
+        type: DataTypes.STRING,
         allowNull: false
     },
-    Responsable : {
-        type : DataTypes.STRING,
-        allowNull: false
-    }, 
-    Aprobado : {
-        type : DataTypes.INTEGER,
+    Unidad: {
+        type: DataTypes.STRING,
         allowNull: false
     },
-    peticion : { 
-        type : DataTypes.STRING,
+    FuenteInformacion: {
+        type: DataTypes.STRING,
         allowNull: false
     },
+    Responsable: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Aprobado: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    peticion: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    idMetrica: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    antiguaid: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Frecuencia: {
+        type: DataTypes.STRING,
+        allowNull: false
 
-    idMetrica : { 
-        type : DataTypes.INTEGER,
-        allowNull: false
-    },
-
-    antiguaid : {
-        type : DataTypes.STRING,
-        allowNull: false
     }
 }, {
     tableName : "indicadores",
@@ -76,74 +79,6 @@ IndicadorModel.init({
     sequelize : persistence
 
 })
-
-//  export const IndicadorModel2 = persistence.define("indicadores", { 
-//     id: {
-//         type : DataTypes.STRING,
-//         autoIncrement: true,
-//         primaryKey: true,
-//     },
-//     CalificacionCORFO: {
-//         type : DataTypes.STRING,
-//         allowNull: false,
-//     }, 
-//     NumeroIndicador : {
-//         type : DataTypes.STRING,
-//         allowNull: false
-//     },
-//     MisionUniversitaria : {
-//         type : DataTypes.STRING,
-//         allowNull: false
-//     },
-//     nombre : { 
-//         type : DataTypes.STRING,
-//         allowNull: false
-//     },
-
-//     TipoIndicador : {
-//         type : DataTypes.STRING,
-//         allowNull: false
-//     },
-
-//     eje : { 
-//         type : DataTypes.STRING,
-//         allowNull: false
-//     }, 
-//     Unidad : { 
-//         type : DataTypes.STRING,
-//         allowNull: false
-//     }, 
-//     FuenteInformacion : { 
-//         type : DataTypes.STRING,
-//         allowNull: false
-//     },
-//     Responsable : {
-//         type : DataTypes.STRING,
-//         allowNull: false
-//     }, 
-//     Aprobado : {
-//         type : DataTypes.INTEGER,
-//         allowNull: false
-//     },
-//     peticion : { 
-//         type : DataTypes.STRING,
-//         allowNull: false
-//     },
-//     idMetrica : { 
-//         type : DataTypes.INTEGER,
-//         allowNull: false
-//     },
-
-//     antiguaid : {
-//         type : DataTypes.STRING,
-//         allowNull: false
-//     }
-
-
-// }, {
-//     timestamps: false
-// }
-// )
 
 
 

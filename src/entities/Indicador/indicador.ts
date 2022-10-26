@@ -1,4 +1,4 @@
-export class Indicador{
+ export class Indicador{
     public id: number;
     public CalificacionCORFO : string;
     public NumeroIndicador: string;
@@ -17,37 +17,38 @@ export class Indicador{
 
 
     constructor(id : number,
-            CalificacionCORFO : string,
-            NumeroIndicador : string,
-            MisionUniversitaria : string,
-            nombre : string,
-            TipoIndicador : string,
-            eje : string,
-            Unidad : string,
-            FuenteInformacion : string,
-            Responsable : string,
-            Frecuencia : string,
-            Aprobado : number,
-            peticion : string,
-            idMetrica : number,
-            antiguaid : string
+                CalificacionCORFO : string,
+                NumeroIndicador : string,
+                MisionUniversitaria : string,
+                nombre : string,
+                TipoIndicador : string,
+                eje : string,
+                Unidad : string,
+                FuenteInformacion : string,
+                Responsable : string,
+                Frecuencia : string,
+                Aprobado : number,
+                peticion : string,
+                idMetrica : number,
+                antiguaid : string
 
-            ){
-            this.id = id;
-            this.CalificacionCORFO = CalificacionCORFO;
-            this.NumeroIndicador = NumeroIndicador;
-            this.MisionUniversitaria = MisionUniversitaria; 
-            this.nombre = nombre;
-            this.TipoIndicador = TipoIndicador; 
-            this.eje = eje; 
-            this.Unidad = Unidad;
-            this.FuenteInformacion = FuenteInformacion;
-            this.Responsable =  Responsable; 
-            this.Frecuencia =  Frecuencia; 
-            this.Aprobado = Aprobado;
-            this.peticion = peticion;
-            this.idMetrica = idMetrica; 
-            this.antiguaid =antiguaid;
+                ){
+                this.id = id;
+                this.CalificacionCORFO = CalificacionCORFO;
+                this.NumeroIndicador = NumeroIndicador;
+                this.MisionUniversitaria = MisionUniversitaria; 
+                this.nombre = nombre;
+                this.TipoIndicador = TipoIndicador; 
+                this.eje = eje; 
+                this.Unidad = Unidad;
+                this.FuenteInformacion = FuenteInformacion;
+                this.Responsable =  Responsable; 
+                this.Frecuencia =  Frecuencia; 
+                this.Aprobado = Aprobado;
+                this.peticion = peticion;
+                this.idMetrica = idMetrica; 
+                this.antiguaid =antiguaid;
     }
         
 }
+

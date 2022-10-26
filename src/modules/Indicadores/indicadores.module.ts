@@ -1,5 +1,4 @@
 import { Router } from "express";
-
 import IndicadoresRoute from "./router/Indicadores.router"
 
 
