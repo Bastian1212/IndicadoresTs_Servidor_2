@@ -58,7 +58,7 @@ class IndicadorController {
             "Crear", 
             request.body.antiguaid
         );
-        console.log(indicador.CalificacionCORFO);
+        console.log(indicador.Aprobado);
         indicadorRepository.createIndicador(indicador).then(indicadores => {
             response.status(201).json({status: true , data : indicadores });
 

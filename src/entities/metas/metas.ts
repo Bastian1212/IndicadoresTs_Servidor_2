@@ -1,5 +1,5 @@
 export class Metas {
-    public id : string;
+    public id : number;
     public idindicador :string;
     public fecha : string;
     public cantidad: number;
@@ -9,8 +9,9 @@ export class Metas {
 
 
 
-    constructor(id : string, fecha : string, cantidad : number, Peticion : string, Aprobado : number , antiguaid : string){
+    constructor(id : number,idindicador : string , fecha : string, cantidad : number, Peticion : string, Aprobado : number , antiguaid : string){
         this.id = id;
+        this.idindicador = idindicador
         this.fecha = fecha; 
         this.cantidad = cantidad; 
         this.Peticion = Peticion;

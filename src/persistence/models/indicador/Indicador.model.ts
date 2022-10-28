@@ -52,6 +52,11 @@ IndicadorModel.init({
         type: DataTypes.STRING,
         allowNull: false
     },
+    Frecuencia: {
+        type: DataTypes.STRING,
+        allowNull: false
+
+    },
     Aprobado: {
         type: DataTypes.INTEGER,
         allowNull: false
@@ -60,19 +65,11 @@ IndicadorModel.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    idMetrica: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
     antiguaid: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    Frecuencia: {
-        type: DataTypes.STRING,
-        allowNull: false
-
-    }
+    
 }, {
     tableName : "indicadores",
     timestamps: false,

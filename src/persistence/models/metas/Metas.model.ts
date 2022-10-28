@@ -10,13 +10,13 @@ class MetasModel extends Model<Metas>{
 
 MetasModel.init({
     id: {
-        type: DataTypes.STRING,
-        autoIncrement: true,
+        type: DataTypes.INTEGER.UNSIGNED,
+        autoIncrement: false,
         primaryKey: true
     },
     idindicador: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        autoIncrement: true,
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     fecha: {
         type: DataTypes.STRING,
@@ -28,13 +28,13 @@ MetasModel.init({
     },
 
     Peticion: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     },
 
     Aprobado: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        autoIncrement: true,
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
 
     antiguaid: {

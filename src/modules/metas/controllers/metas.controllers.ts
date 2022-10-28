@@ -13,15 +13,17 @@ class MetasController {
 
 
     public createMetas( request : Request, response : Response){
-        const generadorid : string =  Math.random().toString(36).substr(2,18);
-        let meta = new Metas(
-            generadorid, 
+       //const generadorid : string =  Math.random().toString(36).substr(2,18);
+       console.log(request.body.id) 
+       let meta = new Metas(
+            request.body.id, 
+            request.body.idindicador,
             request.body.fecha,
             request.body.cantidad, 
             "Añadir", 
             0,
             "0"
-        )
+        );
         metasRepository.createMetas(meta).then(metas => {
             response.status(201).json({status : true, data : metas});
         }, error => {

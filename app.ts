@@ -37,7 +37,7 @@ class  App  {
 
   routes() {
     this.server.use(UserModule.routes);
-    //this.server.use(metasModule.routes);
+    this.server.use(metasModule.routes);
     this.server.use(IndicadorModule.routes);
     
   }
