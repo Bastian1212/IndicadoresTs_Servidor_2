@@ -1,8 +1,10 @@
 import express, { Express, Request, Response, Router, Application } from 'express';
 import dotenv from 'dotenv'
 import UserModule from './src/modules/users/users.module';
-import IndicadorModule from "./src/modules/Indicadores/indicadores.module"
-import persistence from './src/persistence/config/persistence';
+import IndicadorModule from "./src/modules/Indicadores/indicadores.module";
+import metasModule from './src/modules/metas/metas.module';
+
+
 
 
 
@@ -35,6 +37,7 @@ class  App  {
 
   routes() {
     this.server.use(UserModule.routes);
+    //this.server.use(metasModule.routes);
     this.server.use(IndicadorModule.routes);
     
   }

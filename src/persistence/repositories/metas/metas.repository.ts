@@ -21,10 +21,18 @@ class MetasRepository {
 
     }
 
-    public async setAprobado(id : string) : any {
+    public async setAprobado(id : string)  {
+        const meta    = await MetasModel.findByPk(id);
+        if (!meta){
+            throw new Error();
+        }
 
-
+        meta.Aprobado  = 1;
         
+
+
+
+
     }
  
 

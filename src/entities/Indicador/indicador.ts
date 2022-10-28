@@ -12,7 +12,6 @@
     public Frecuencia: string;
     public Aprobado : number;
     public peticion : string;
-    public idMetrica : number;
     public antiguaid : string;
 
 
@@ -29,7 +28,6 @@
                 Frecuencia : string,
                 Aprobado : number,
                 peticion : string,
-                idMetrica : number,
                 antiguaid : string
 
                 ){
@@ -46,7 +44,7 @@
                 this.Frecuencia =  Frecuencia; 
                 this.Aprobado = Aprobado;
                 this.peticion = peticion;
-                this.idMetrica = idMetrica; 
+                
                 this.antiguaid =antiguaid;
     }
         

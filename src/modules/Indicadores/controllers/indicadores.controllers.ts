@@ -54,9 +54,8 @@ class IndicadorController {
             request.body.FuenteInformacion,
             request.body.Responsable,
             request.body.Frecuencia,
-            request.body.Aprobado, 
-            request.body.peticion, 
-            request.body.idMetrica,
+            0, 
+            "Crear", 
             request.body.antiguaid
         );
         console.log(indicador.CalificacionCORFO);
@@ -68,11 +67,6 @@ class IndicadorController {
         });
 
     }
-
-    // public setMetricas (res : Response, req : Request) { 
-
-    // }
-
 
 
 
@@ -96,6 +90,26 @@ class IndicadorController {
     //         response.status(404).json({status : false})
     //     })
     // }
+
+    public editarProyecto(request : Request ,response : Response){
+
+        let indicador = new Indicador(
+            request.body.id,
+            request.body.CalificacionCORFO, 
+            request.body.NumeroIndicador, 
+            request.body.MisionUniversitaria,
+            request.body.nombre,
+            request.body.TipoIndicador, 
+            request.body.eje,
+            request.body.Unidad,
+            request.body.FuenteInformacion,
+            request.body.Responsable,
+            request.body.Frecuencia,
+            0, 
+            "Editar", 
+            request.body.antiguaid
+        );
+    }
 
 
 

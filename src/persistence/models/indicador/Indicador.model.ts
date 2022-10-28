@@ -10,7 +10,7 @@ class  IndicadorModel extends Model<Indicador> {
 
 IndicadorModel.init({
     id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER.UNSIGNED,
         autoIncrement: true,
         primaryKey: true,
     },
