@@ -32,7 +32,12 @@ class MetasController {
     }
 
     public setAprobado (request : Request, response : Response){
-
+        const id : number = parseInt(request.params.id,10)
+        metasRepository.setAprobado(id).then(metaset => {
+            response.status(200).json({status : true ,  info : "Ok"})
+        }, error =>{
+            response.status(404).json({status : false});
+        })
     }
 
     public setPeticion( request : Request, response : Response){
@@ -40,6 +45,13 @@ class MetasController {
     }
 
     public deleteMetas( request : Request, response : Response){
+        const id : number = parseInt(request.params.id,10);
+        metasRepository.deleteMetas(id).then(delateM => {
+            response.status(200).json({status : true ,  info : "Meta Eliminada"})
+        }, error =>{
+            response.status(404).json({status : false});
+        })
+
 
     }
 }

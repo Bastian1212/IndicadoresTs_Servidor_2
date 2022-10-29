@@ -1,4 +1,4 @@
-import { Model } from "sequelize";
+import { Model, where } from "sequelize";
 import { Metas } from "../../../entities/metas/metas";
 import persistence from "../../config/persistence";
 import MetasModel from "../../models/metas/Metas.model";
@@ -24,20 +24,29 @@ class MetasRepository {
 
     }
 
-    // public async setAprobado(id : string)  {
-    //     const meta    = await MetasModel.findByPk(id);
-    //     if (!meta){
-    //         //throw new Error();
-    //     }
+    public async setAprobado(id : number)   {
+        const meta : any   = await MetasModel.findOne({
+            where : {id},
+        });
+        if (!meta){
+            throw new Error();
+        }
+        meta.set({
+            Aprobado : 1
+        })
+        meta.save()
 
-    //     // meta.Aprobado  = 1;
+    }
 
-
-
-
-
-    // }
- 
+    public async deleteMetas( id : number ){
+        try {
+            const resultado : any  = await MetasModel.destroy({
+                where : {id}
+            })
+        } catch (error) {
+            throw new Error();
+        }
+    } 
 
 
 }

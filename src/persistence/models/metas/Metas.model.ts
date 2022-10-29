@@ -3,6 +3,7 @@ import { Metas } from "../../../entities/metas/metas";
 import persistence from "../../config/persistence";
 
 class MetasModel extends Model<Metas>{
+    Aprobado: number;
 
 
 }
