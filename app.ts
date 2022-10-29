@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import UserModule from './src/modules/users/users.module';
 import IndicadorModule from "./src/modules/Indicadores/indicadores.module";
 import metasModule from './src/modules/metas/metas.module';
-
+import ejesModule from './src/modules/ejes/ejes.module';
 
 
 
@@ -39,6 +39,7 @@ class  App  {
     this.server.use(UserModule.routes);
     this.server.use(metasModule.routes);
     this.server.use(IndicadorModule.routes);
+    this.server.use(ejesModule.router);
     
   }
 }

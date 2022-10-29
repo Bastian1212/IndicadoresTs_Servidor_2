@@ -8,7 +8,7 @@ class EjeModel extends Model<Eje> {
 
 EjeModel.init({
     id : {
-        type : DataTypes.STRING,
+        type : DataTypes.INTEGER.UNSIGNED,
         autoIncrement: true,
         primaryKey: true,
     }, 
