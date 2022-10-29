@@ -5,7 +5,8 @@ class EjeRouter {
     public router : Router;
 
     constructor(){
-        this.router.get("/lista",ejesControllers.getEje)
+        this.router = Router();
+        this.router.get("/lista",ejesControllers.getEjes);
     }
 }
 

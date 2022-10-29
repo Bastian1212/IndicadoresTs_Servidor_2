@@ -17,13 +17,8 @@ class MetasRepository {
 
     public async createMetas(meta : Metas) : Promise<Metas>{
         console.log(meta);
-        try {
-            let nuevaMeta : any = await MetasModel.create(meta);
-            return <Metas> nuevaMeta;
-        } catch (error) {
-            console.log(error)  
-        
-        }
+        let nuevaMeta : any = await MetasModel.create(meta);
+        return <Metas> nuevaMeta;
      
         
 
