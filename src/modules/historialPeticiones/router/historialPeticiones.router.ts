@@ -7,7 +7,7 @@ class HistorialPeticionesRouter {
 
     constructor(){
         this.router = Router();
-        this.router.get("/lista"  );
+        this.router.get("/lista", historialPeticionesControllers.getHistorialPeticiones);
     }
 }
 
