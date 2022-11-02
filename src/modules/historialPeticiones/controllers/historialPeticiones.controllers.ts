@@ -17,8 +17,11 @@ class HistorialPeticionesController{
     }
 
     public createHistorial(request : Request, response : Response) {
+
+        const idNum : number = Math.floor(Math.random() * 999999);
+
         let historial = new HistorialPeticiones(
-            request.body.id, 
+            idNum, 
             request.body.id_imm,
             request.body.tipo, 
             request.body.solicitud,

@@ -1,8 +1,14 @@
 import { triggerAsyncId } from "async_hooks";
 import { Model } from "sequelize";
+import { now } from "sequelize/types/utils";
 import { Indicador } from "../../../entities/indicador/indicador";
 import persistence from "../../config/persistence";
 import IndicadorModel from "../../models/indicador/Indicador.model";
+
+
+const servicios = require("../../historialPeticiones/controllers")
+const sHistorial = new servicios.HistorialPeticionesController();
+
 
 class IndicadoreRepository {
 
@@ -40,51 +46,124 @@ class IndicadoreRepository {
     }
 
 
-    public async deleteIndicador(id : string){
-
-        try {
-
-            await IndicadorModel.destroy({
-                where :{
-                    id,
-                },
-            });
-            
-        } catch (error) {
-            throw new Error();
-        }
     
 
+    public  async  setAprobado(data : any ){
+        const myArray = data.split("_");
+        const id : number  =  parseInt(myArray[0],10);
+        const  solicitud: string = myArray[1];
+        const now : string = myArray[2];
+        const indicador : any = await IndicadorModel.findOne({
+            where : {id}, 
+        });
 
-        // const myArray = id.split("_");
-        // id = myArray[0];
-        // const solicitud = myArray[1];
-        // const now = myArray[2];
-        // const D = Math.random().toString(36).substr(2,18)
-        // const ADD_QUERY = `UPDATE indicadores SET id ='${D}',Aprobado = 2, antiguaid = '${id}' WHERE id = '${id}';`
+        if(!indicador){
+            throw new Error();
+        }
+        indicador.set({
+            Aprobado : 1 
 
-        // let indicador : Array<any> = await persistence.query(ADD_QUERY, {
-        //     model: IndicadorModel, 
-        //     maptoModel: true
-        // })
+        })
+        indicador.save()
+         if(solicitud === "Añadir"){
+            sHistorial.createHistorial(0, {
+                body : {
+                    id_imm : id, 
+                    typo  :1, 
+                    solicitud : "Anadir", 
+                    estado: "Aprobado", 
+                    fecha : now
+                }
+            });
+        }else{
+            sHistorial.createHistorial(0, {
+                body : {
+                    id_imm : id, 
+                    typo  :1, 
+                    solicitud : "Eliminar", 
+                    estado: "Rechazado", 
+                    fecha : now
+                }
+            });
 
-        // sHistorial.setHistorial(0,{body: { D: D, id: id, tipo: 1}} ); 
+         }
 
-        // if(solicitud === 'Eliminar'){
-        //     sHistorial.createHistorial(0,{body: { id_imm: `${D}`, tipo: 1, solicitud: 'Eliminar', estado: 'Aprobado', fecha: now }} ); 
-        // }else{
-        //     sHistorial.createHistorial(0,{body: { id_imm: `${D}`, tipo: 1, solicitud: 'Añadir', estado: 'Rechazado', fecha: now }} );   
-        // }        
     }
 
-    public setPeticion(id : string) {
-
-        let peticion : any 
-        if(peticion == null){
-            throw new Error(); 
-        }else { 
+    public async  setPeticion(id : number) {
+        
+        const indicador : any = await IndicadorModel.findOne({
+            where : {id}, 
+        });
+        if(!indicador){
+            throw new Error();
             
         }
+        indicador.set({
+            Aprobado : 0, 
+            Peticion : "Eliminar"
+
+        })
+        indicador.save();
+
+        return "ok"
+
+    }
+
+    public async  deleteIndicador(data : any ){
+        const myArray = data.split("_");
+        const id : number  =  parseInt(myArray[0],10);
+        const  solicitud: string = myArray[1];
+        const now : string = myArray[2];
+        
+        const idNum : number = Math.floor(Math.random() * 999999);
+        const indicador : any = await IndicadorModel.findOne({
+            where : {id}, 
+        });
+        if(!indicador){
+            throw new Error();
+            
+        }
+        indicador.set({
+            id : idNum, 
+            tipo : 1,
+            Aprobado : 2, 
+            antiguaid : id 
+        })
+
+        sHistorial.setHistorial(0, {
+            idNum  : idNum, 
+            id : id, 
+            tipo : id
+        })
+
+        if(solicitud === "Eliminar"){
+            sHistorial.createHistorial(0, {
+                body : {
+                    id_imm : idNum, 
+                    tipo  :1, 
+                    solicitud : "Eliminar", 
+                    estado: "Aprobado", 
+                    fecha : now
+                }
+            });
+            }else{
+            sHistorial.createHistorial(0, {
+                body : {
+                    id_imm : idNum, 
+                    tipo  :1, 
+                    solicitud : "Añadir", 
+                    estado: "Rechazado", 
+                    fecha : now
+                }
+            });
+
+            }
+            indicador.save()
+
+            return "ok "
+
+
     }
 
     public async editarIndicador(id : string, indicador: Indicador){

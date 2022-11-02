@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
+import { request } from 'http';
 import { text } from 'stream/consumers';
 import { Indicador } from '../../../entities/indicador/indicador';
 import indicadorRepository from '../../../persistence/repositories/indicador/indicador.repository';
+
 
 class IndicadorController {
 
@@ -70,26 +72,35 @@ class IndicadorController {
 
 
 
-    // public setAprobado (res : Response, req : Request){ 
+    public setAprobado (request : Request ,response : Response){
+        
+        const data : any = request.params;
+        
+        indicadorRepository.setAprobado(data).then(msg => {
+            response.status(201).json({status : true, data : msg});
+        },error => {
+            response.status(400).json({status : false});
+        })
 
-    // }
+    }
 
-    // public setPeticion  (res : Response, req : Request){
-    //     indicadorRepository.setPeticion(req.body.id).then(peticion => {
-    //         response.status(200).json({status : true , data : peticion })
-    //     }, error => { 
-    //         response.status(404).json({status :  false})
-    //     })
+    public setPeticion  (request : Request ,response : Response){
+        indicadorRepository.setPeticion(request.body.id).then(peticion => {
+            response.status(200).json({status : true , data : peticion })
+        }, error => { 
+            response.status(404).json({status :  false})
+        })
 
-    // }
-
-    // public deleteIndicador (res : Response, req : Request){ 
-    //     indicadorRepository.deleteIndicador(req.body.id).then(indicador => {
-    //         response.status(200).json({status : true, data : indicador});
-    //     }, error => {
-    //         response.status(404).json({status : false})
-    //     })
-    // }
+    }
+    public  deleteIndicador(request : Request ,response : Response){
+        const data : any = request.params
+        indicadorRepository.deleteIndicador(data).then(msg  => {
+            response.status(200).json({status : true , data : msg })
+        }, error => {
+            response.status(404).json({status :  false})
+        })
+    }
+    
 
     public editarProyecto(request : Request ,response : Response){
 
