@@ -20,7 +20,9 @@ class HistorialPeticionesRepository {
         return <HistorialPeticiones> nuevoHistoriaal;
     }
 
-    public setHistorial(){
+    public  async setHistorial( ){
+       
+
         
     }
 

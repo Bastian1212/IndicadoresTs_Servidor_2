@@ -54,6 +54,20 @@ class MetasController {
 
 
     }
+
+    public deleteMetasIndicador (request : Request, response : Response){
+        const data : any = {
+            idindicador : request.body.id,
+            antiguaid :  request.body.id,
+            antiguaidN : request.body.D,
+            Aprobado : 2, 
+        }
+        metasRepository.deleteMetasIndicador(data).then(msg => {
+            response.status(200).json({status : true ,  info :msg});
+        }, error =>{
+            response.status(404).json({status : false});
+        })
+    }
 }
 
 

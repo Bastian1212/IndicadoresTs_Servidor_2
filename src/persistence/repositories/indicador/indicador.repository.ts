@@ -37,11 +37,8 @@ class IndicadoreRepository {
     }
 
     public async  createIndicador(indicador : Indicador) : Promise<Indicador> {
-        console.log(`desde funciones ${indicador.CalificacionCORFO}`);
-        console.log(indicador)
         let nuevoIndicador : any = await IndicadorModel.create(indicador);
-        console.log(nuevoIndicador.CalificacionCORFO)
-        console.log("paso a aki")
+        console.log(nuevoIndicador.CalificacionCORFO) 
         return <Indicador> nuevoIndicador;
     }
 
@@ -115,7 +112,7 @@ class IndicadoreRepository {
         const id : number  =  parseInt(myArray[0],10);
         const  solicitud: string = myArray[1];
         const now : string = myArray[2];
-        
+
         const idNum : number = Math.floor(Math.random() * 999999);
         const indicador : any = await IndicadorModel.findOne({
             where : {id}, 
@@ -131,11 +128,11 @@ class IndicadoreRepository {
             antiguaid : id 
         })
 
-        sHistorial.setHistorial(0, {
-            idNum  : idNum, 
-            id : id, 
-            tipo : id
-        })
+        // sHistorial.setHistorial(0, {
+        //     idNum  : idNum, 
+        //     id : id, 
+        //     tipo : id
+        // })
 
         if(solicitud === "Eliminar"){
             sHistorial.createHistorial(0, {
