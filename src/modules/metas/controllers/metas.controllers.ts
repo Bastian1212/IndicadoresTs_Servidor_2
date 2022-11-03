@@ -32,8 +32,9 @@ class MetasController {
     }
 
     public setAprobado (request : Request, response : Response){
-        const id : number = parseInt(request.params.id,10)
-        metasRepository.setAprobado(id).then(metaset => {
+        const data : any =  request.params.id;
+
+        metasRepository.setAprobado(data).then(metaset => {
             response.status(200).json({status : true ,  info : "Ok"})
         }, error =>{
             response.status(404).json({status : false});
@@ -41,6 +42,12 @@ class MetasController {
     }
 
     public setPeticion( request : Request, response : Response){
+        const data : any =  request.params.id
+        metasRepository.setPeticion(data).then(msg => {
+            response.status(200).json({status : true , info : "OK"})
+        },error => {
+            response.status(404).json({status : false});
+        })
 
     }
 

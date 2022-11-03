@@ -4,6 +4,12 @@ import { Metas } from "../../../entities/metas/metas";
 import persistence from "../../config/persistence";
 import MetasModel from "../../models/metas/Metas.model";
 
+
+const servicios = require("../../historialPeticiones/controllers")
+const sHistorial = new servicios.HistorialPeticionesController();
+
+
+
 class MetasRepository {
 
     public async getMetas() : Promise<Array<Metas>>{
@@ -25,7 +31,38 @@ class MetasRepository {
 
     }
 
-    public async setAprobado(id : number)   {
+    public async setAprobado(data : any )   {
+        const myArray = data.split("_")
+        const id : number = parseInt(myArray[0],10)
+        const solicitud : string =  myArray[1]; 
+        const now : string = myArray[2];
+
+        if(solicitud === "Añadir"){
+            sHistorial.createHistorial(0, {
+                body : {
+                    id_imm : id, 
+                    typo  :2, 
+                    solicitud : "Anadir", 
+                    estado: "Aprobado", 
+                    fecha : now
+                }
+            });
+        }else{
+            sHistorial.createHistorial(0, {
+                body : {
+                    id_imm : id, 
+                    typo  :2, 
+                    solicitud : "Eliminar", 
+                    estado: "Rechazado", 
+                    fecha : now
+                }
+            });
+
+         }
+
+        
+
+
         const meta : any   = await MetasModel.findOne({
             where : {id},
         });
@@ -39,14 +76,78 @@ class MetasRepository {
 
     }
 
-    public async deleteMetas( id : number ){
-        try {
-            const resultado : any  = await MetasModel.destroy({
-                where : {id}
-            })
-        } catch (error) {
+    public async setPeticion(data : any ){
+        const myArray = data.split("_");
+        const id : number  =   parseInt(myArray[0],10);
+        const fecha : string = myArray[1];
+
+        const meta : any = await MetasModel.findOne({
+            where : {id}
+        });
+
+        if(!meta){
             throw new Error();
         }
+
+        meta.set({
+            Peticion : "Eliminar",
+            Aprobado : 0,
+            fecha : fecha 
+        })
+
+        meta.seve();
+    }
+
+    public async deleteMetas(data : any ){
+        const myArray = data.split("_");
+        const id : number =  parseInt(myArray[0],10);
+        const solicitud : string = myArray[1];
+        const now :string  = myArray[2]; 
+
+        const idNum : number = Math.floor(Math.random() * 999999); 
+
+        const meta : any = await MetasModel.findOne({
+            where :  {id},
+        });
+
+        if(!meta) {
+            throw new Error();
+        }
+        
+        meta.set({
+            idindicador : idNum,
+            Aprobado :2,
+
+        })
+        meta.save()
+        // sHistorial.setHistorial(0, {
+        //     idNum  : idNum, 
+        //     id : id, 
+        //     tipo : 2
+        // })
+
+        if(solicitud === "Eliminar"){
+            sHistorial.createHistorial(0, {
+                body : {
+                    id_imm : idNum, 
+                    tipo  :2, 
+                    solicitud : "Eliminar", 
+                    estado: "Aprobado", 
+                    fecha : now
+                }
+            });
+            }else{
+            sHistorial.createHistorial(0, {
+                body : {
+                    id_imm : idNum, 
+                    tipo  :2, 
+                    solicitud : "Añadir", 
+                    estado: "Rechazado", 
+                    fecha : now
+                }
+            });
+
+            }
     } 
 
 

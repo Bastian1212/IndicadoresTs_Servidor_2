@@ -1,7 +1,5 @@
 import { error } from 'console';
 import { Request, Response } from 'express';
-import { Router } from "express";
-import { hostname } from 'os';
 import { text } from 'stream/consumers';
 import { HistorialPeticiones } from "../../../entities/historialpeticiones/historialPeticiones";
 import historialPeticionRepository from "../../../persistence/repositories/historialPeticion/historialPeticion.repository";

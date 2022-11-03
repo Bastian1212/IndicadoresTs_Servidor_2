@@ -131,7 +131,7 @@ class IndicadoreRepository {
         // sHistorial.setHistorial(0, {
         //     idNum  : idNum, 
         //     id : id, 
-        //     tipo : id
+        //     tipo : 1
         // })
 
         if(solicitud === "Eliminar"){

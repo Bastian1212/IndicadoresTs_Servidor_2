@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { request } from 'http';
+
 import { text } from 'stream/consumers';
 import { Indicador } from '../../../entities/indicador/indicador';
 import indicadorRepository from '../../../persistence/repositories/indicador/indicador.repository';
@@ -93,7 +93,7 @@ class IndicadorController {
 
     }
     public  deleteIndicador(request : Request ,response : Response){
-        const data : any = request.params
+        const data : any = request.params.id
         indicadorRepository.deleteIndicador(data).then(msg  => {
             response.status(200).json({status : true , data : msg })
         }, error => {
