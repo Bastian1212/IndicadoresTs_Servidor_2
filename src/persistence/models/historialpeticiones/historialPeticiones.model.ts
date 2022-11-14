@@ -8,14 +8,14 @@ class HistorialPeticionesModel extends Model<HistorialPeticiones> {
 
 HistorialPeticionesModel.init({
     id : {
-        type : DataTypes.STRING, 
+        type : DataTypes.INTEGER.UNSIGNED, 
         autoIncrement : true, 
         primaryKey : true
     },
 
     id_imm : {
-        type : DataTypes.INTEGER.UNSIGNED,
-        autoIncrement : true,
+        type : DataTypes.INTEGER,
+        allowNull: false
     },
 
     tipo : {

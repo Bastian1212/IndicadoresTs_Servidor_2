@@ -3,10 +3,11 @@ import historialPeticionesRouter from "./router/historialPeticiones.router";
 
 
 class HistorialPeticionesModule {
-    public router : Router;
+    public router: Router;
+
     public constructor(){
         this.router = Router();
-        this.router.use("/historial",historialPeticionesRouter )
+        this.router.use("/historial", historialPeticionesRouter )
     }
 }
 

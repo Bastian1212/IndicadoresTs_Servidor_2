@@ -6,8 +6,8 @@ import persistence from "../../config/persistence";
 import IndicadorModel from "../../models/indicador/Indicador.model";
 
 
-const servicios = require("../../historialPeticiones/controllers")
-const sHistorial = new servicios.HistorialPeticionesController();
+import servicios from "../../../modules/historialPeticiones/controllers/historialPeticiones.controllers"
+const sHistorial = servicios
 
 
 class IndicadoreRepository {
@@ -46,14 +46,17 @@ class IndicadoreRepository {
     
 
     public  async  setAprobado(data : any ){
-        const myArray = data.split("_");
+        
+        
+        const myArray = data.id.split("_");
         const id : number  =  parseInt(myArray[0],10);
+        //const id2 : number = parseInt(id  ,10)
         const  solicitud: string = myArray[1];
         const now : string = myArray[2];
+        console.log()
         const indicador : any = await IndicadorModel.findOne({
             where : {id}, 
         });
-
         if(!indicador){
             throw new Error();
         }
@@ -63,25 +66,26 @@ class IndicadoreRepository {
         })
         indicador.save()
          if(solicitud === "Añadir"){
-            sHistorial.createHistorial(0, {
+            sHistorial.createHistorial({
                 body : {
+        
                     id_imm : id, 
-                    typo  :1, 
+                    tipo  :1, 
                     solicitud : "Anadir", 
                     estado: "Aprobado", 
                     fecha : now
                 }
-            });
+            } <any> ,0);
         }else{
-            sHistorial.createHistorial(0, {
+            sHistorial.createHistorial({
                 body : {
                     id_imm : id, 
-                    typo  :1, 
+                    tipo  :1, 
                     solicitud : "Eliminar", 
                     estado: "Rechazado", 
                     fecha : now
                 }
-            });
+            },0);
 
          }
 
@@ -134,29 +138,29 @@ class IndicadoreRepository {
         //     tipo : 1
         // })
 
-        if(solicitud === "Eliminar"){
-            sHistorial.createHistorial(0, {
-                body : {
-                    id_imm : idNum, 
-                    tipo  :1, 
-                    solicitud : "Eliminar", 
-                    estado: "Aprobado", 
-                    fecha : now
-                }
-            });
-            }else{
-            sHistorial.createHistorial(0, {
-                body : {
-                    id_imm : idNum, 
-                    tipo  :1, 
-                    solicitud : "Añadir", 
-                    estado: "Rechazado", 
-                    fecha : now
-                }
-            });
+        // if(solicitud === "Eliminar"){
+        //     sHistorial.createHistorial(0, {
+        //         body : {
+        //             id_imm : idNum, 
+        //             tipo  :1, 
+        //             solicitud : "Eliminar", 
+        //             estado: "Aprobado", 
+        //             fecha : now
+        //         }
+        //     });
+        //     }else{
+        //     sHistorial.createHistorial(0, {
+        //         body : {
+        //             id_imm : idNum, 
+        //             tipo  :1, 
+        //             solicitud : "Añadir", 
+        //             estado: "Rechazado", 
+        //             fecha : now
+        //         }
+        //     });
 
-            }
-            indicador.save()
+        //     }
+        indicador.save()
 
             return "ok "
 

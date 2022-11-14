@@ -3,30 +3,30 @@ import { HistorialPeticiones } from "../../../entities/historialpeticiones/histo
 import persistence from "../../config/persistence";
 import HistorialPeticionesModel from "../../models/historialpeticiones/historialPeticiones.model";
 
-
-class HistorialPeticionesRepository { 
+class HistorialPeticionesRepository{
     public async  getHistorialPeticiones() : Promise<Array<HistorialPeticiones>>{
         let historial : Array<any> = await HistorialPeticionesModel.findAll();
-
+        
         if(historial.length == 0 ){
             throw new Error();
-        }else{
-            return (<Array<HistorialPeticiones>> historial)
-        }
-    } 
+         }else{
+           return (<Array<HistorialPeticiones>> historial)
+         }
+    }
 
     public async createHistorial(historial : HistorialPeticiones) : Promise<HistorialPeticiones> {
-        let nuevoHistoriaal : any  = await HistorialPeticionesModel.create(historial);
-        return <HistorialPeticiones> nuevoHistoriaal;
-    }
-
-    public  async setHistorial( ){
-       
-
-        
-    }
+            let nuevoHistoriaal : any  = await HistorialPeticionesModel.create(historial);
+            return <HistorialPeticiones> nuevoHistoriaal;
+        }
 
 }
+
+
+
+
+    
+
+
 
 
 export default new HistorialPeticionesRepository();

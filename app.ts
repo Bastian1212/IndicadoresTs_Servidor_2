@@ -4,6 +4,7 @@ import UserModule from './src/modules/users/users.module';
 import IndicadorModule from "./src/modules/Indicadores/indicadores.module";
 import metasModule from './src/modules/metas/metas.module';
 import ejesModule from './src/modules/ejes/ejes.module';
+import historialPeticionModule from './src/modules/historialPeticiones/historialPeticion.module';
 
 
 
@@ -40,7 +41,7 @@ class  App  {
     this.server.use(metasModule.routes);
     this.server.use(IndicadorModule.routes);
     this.server.use(ejesModule.router);
-    
+    this.server.use(historialPeticionModule.router);
   }
 }
 

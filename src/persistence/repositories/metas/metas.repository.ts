@@ -5,8 +5,8 @@ import persistence from "../../config/persistence";
 import MetasModel from "../../models/metas/Metas.model";
 
 
-const servicios = require("../../historialPeticiones/controllers")
-const sHistorial = new servicios.HistorialPeticionesController();
+import servicios from "../../../modules/historialPeticiones/controllers/historialPeticiones.controllers";
+const sHistorial = servicios
 
 
 
@@ -36,7 +36,7 @@ class MetasRepository {
         const id : number = parseInt(myArray[0],10)
         const solicitud : string =  myArray[1]; 
         const now : string = myArray[2];
-
+        const num : number = 0 ;
         if(solicitud === "Añadir"){
             sHistorial.createHistorial(0, {
                 body : {
@@ -120,11 +120,11 @@ class MetasRepository {
 
         })
         meta.save()
-        // sHistorial.setHistorial(0, {
-        //     idNum  : idNum, 
-        //     id : id, 
-        //     tipo : 2
-        // })
+        sHistorial.setHistorial(0, {
+            idNum  : idNum, 
+            id : id, 
+            tipo : 2
+        })
 
         if(solicitud === "Eliminar"){
             sHistorial.createHistorial(0, {
