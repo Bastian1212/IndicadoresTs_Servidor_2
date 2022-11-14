@@ -10,7 +10,7 @@ class IndicadorRouter {
         this.router.put("/setaprobado/:id", indicadoresControllers.setAprobado);
         this.router.put("/setpeticion/:id" , indicadoresControllers.setPeticion);
         this.router.put("/deleteindicadores/:id",   indicadoresControllers.deleteIndicador);     
-        this.router.get("/test", indicadoresControllers.getTesteo);
+        
         
     }
 }

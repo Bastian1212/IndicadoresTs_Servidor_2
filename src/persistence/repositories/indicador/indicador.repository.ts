@@ -1,5 +1,6 @@
 import { triggerAsyncId } from "async_hooks";
 import { Model } from "sequelize";
+import { Request, Response } from 'express';
 import { now } from "sequelize/types/utils";
 import { Indicador } from "../../../entities/indicador/indicador";
 import persistence from "../../config/persistence";
@@ -67,7 +68,7 @@ class IndicadoreRepository {
         indicador.save()
          if(solicitud === "Añadir"){
             sHistorial.createHistorial({
-                body : {
+                body :  {
         
                     id_imm : id, 
                     tipo  :1, 
@@ -75,7 +76,7 @@ class IndicadoreRepository {
                     estado: "Aprobado", 
                     fecha : now
                 }
-            } <any> ,0);
+            }  ,0);
         }else{
             sHistorial.createHistorial({
                 body : {
@@ -88,6 +89,7 @@ class IndicadoreRepository {
             },0);
 
          }
+         
 
     }
 
@@ -132,34 +134,34 @@ class IndicadoreRepository {
             antiguaid : id 
         })
 
-        // sHistorial.setHistorial(0, {
+        // sHistorial.setHistorial( {
         //     idNum  : idNum, 
         //     id : id, 
         //     tipo : 1
-        // })
+        // }, 0 )
 
-        // if(solicitud === "Eliminar"){
-        //     sHistorial.createHistorial(0, {
-        //         body : {
-        //             id_imm : idNum, 
-        //             tipo  :1, 
-        //             solicitud : "Eliminar", 
-        //             estado: "Aprobado", 
-        //             fecha : now
-        //         }
-        //     });
-        //     }else{
-        //     sHistorial.createHistorial(0, {
-        //         body : {
-        //             id_imm : idNum, 
-        //             tipo  :1, 
-        //             solicitud : "Añadir", 
-        //             estado: "Rechazado", 
-        //             fecha : now
-        //         }
-        //     });
+        if(solicitud === "Eliminar"){
+            sHistorial.createHistorial( {
+                body : {
+                    id_imm : idNum, 
+                    tipo  :1, 
+                    solicitud : "Eliminar", 
+                    estado: "Aprobado", 
+                    fecha : now
+                }
+            }, 0 );
+            }else{
+            sHistorial.createHistorial( {
+                body : {
+                    id_imm : idNum, 
+                    tipo  :1, 
+                    solicitud : "Añadir", 
+                    estado: "Rechazado", 
+                    fecha : now
+                }
+            },0 );
 
-        //     }
+            }
         indicador.save()
 
             return "ok "

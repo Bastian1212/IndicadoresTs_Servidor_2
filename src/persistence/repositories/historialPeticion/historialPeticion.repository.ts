@@ -14,9 +14,9 @@ class HistorialPeticionesRepository{
          }
     }
 
-    public async createHistorial(historial : HistorialPeticiones) : Promise<HistorialPeticiones> {
+    public async createHistorial(historial : HistorialPeticiones)  {
             let nuevoHistoriaal : any  = await HistorialPeticionesModel.create(historial);
-            return <HistorialPeticiones> nuevoHistoriaal;
+            return "ok"
         }
 
 }

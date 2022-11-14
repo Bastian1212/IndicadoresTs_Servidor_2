@@ -38,7 +38,7 @@ class MetasRepository {
         const now : string = myArray[2];
         const num : number = 0 ;
         if(solicitud === "Añadir"){
-            sHistorial.createHistorial(0, {
+            sHistorial.createHistorial( {
                 body : {
                     id_imm : id, 
                     typo  :2, 
@@ -46,9 +46,9 @@ class MetasRepository {
                     estado: "Aprobado", 
                     fecha : now
                 }
-            });
+            },0);
         }else{
-            sHistorial.createHistorial(0, {
+            sHistorial.createHistorial( {
                 body : {
                     id_imm : id, 
                     typo  :2, 
@@ -56,7 +56,7 @@ class MetasRepository {
                     estado: "Rechazado", 
                     fecha : now
                 }
-            });
+            },0);
 
          }
 
@@ -120,14 +120,14 @@ class MetasRepository {
 
         })
         meta.save()
-        sHistorial.setHistorial(0, {
-            idNum  : idNum, 
-            id : id, 
-            tipo : 2
-        })
+        // sHistorial.setHistorial(0, {
+        //     idNum  : idNum, 
+        //     id : id, 
+        //     tipo : 2
+        // })
 
         if(solicitud === "Eliminar"){
-            sHistorial.createHistorial(0, {
+            sHistorial.createHistorial( {
                 body : {
                     id_imm : idNum, 
                     tipo  :2, 
@@ -135,7 +135,7 @@ class MetasRepository {
                     estado: "Aprobado", 
                     fecha : now
                 }
-            });
+            },0);
             }else{
             sHistorial.createHistorial(0, {
                 body : {
@@ -145,7 +145,7 @@ class MetasRepository {
                     estado: "Rechazado", 
                     fecha : now
                 }
-            });
+            },0);
 
             }
     } 

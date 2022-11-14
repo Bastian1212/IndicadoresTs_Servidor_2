@@ -28,7 +28,7 @@ HistorialPeticionesModel.init({
         allowNull: false,
     },
 
-    estudio : {
+    estado : {
         type : DataTypes.STRING,
         allowNull: false,
     },
