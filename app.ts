@@ -1,4 +1,6 @@
 import express, { Express, Request, Response, Router, Application } from 'express';
+
+
 import dotenv from 'dotenv'
 import UserModule from './src/modules/users/users.module';
 import IndicadorModule from "./src/modules/Indicadores/indicadores.module";
@@ -6,9 +8,7 @@ import metasModule from './src/modules/metas/metas.module';
 import ejesModule from './src/modules/ejes/ejes.module';
 import historialPeticionModule from './src/modules/historialPeticiones/historialPeticion.module';
 
-
-
-
+const  cors = require('cors')
 
 class  App  {
   public server : Application;
@@ -17,11 +17,11 @@ class  App  {
   constructor() {
     dotenv.config(); 
     this.port = process.env.PORT || 4000 ;
-
+    
     console.log('initializing');
 
-    this.server = express();
 
+    this.server = express();
     this.middlewares();
     this.routes();
 
@@ -34,6 +34,7 @@ class  App  {
 
   middlewares() {
     this.server.use(express.json());
+    this.server.use(cors())
   }
 
   routes() {
@@ -45,4 +46,5 @@ class  App  {
   }
 }
 
+    
 export default new App();

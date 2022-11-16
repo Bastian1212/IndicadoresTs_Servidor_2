@@ -7,7 +7,7 @@ class HistorialPeticionesController {
 
     public getHistorialPeticiones(request : Request, response : Response){
         historialPeticionRepository.getHistorialPeticiones().then(historial => {
-            response.status(200).json({data : historial})
+            response.json({data : historial})
         }, error => {
             response.status(404).json({status : false});
         })
