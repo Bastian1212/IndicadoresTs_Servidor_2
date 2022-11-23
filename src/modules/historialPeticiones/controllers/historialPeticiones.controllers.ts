@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { HistorialPeticiones } from '../../../entities/historialpeticiones/historialPeticiones';
 import historialPeticionRepository from '../../../persistence/repositories/historialPeticion/historialPeticion.repository';
-
+import persistence from '../../../persistence/config/persistence';
 
 class HistorialPeticionesController {
 
@@ -28,22 +28,22 @@ class HistorialPeticionesController {
 
     }
 
-    public setHistorial(request : Request, response : Response){
-        // const DELETE_QUERY = `SELECT id_imm FROM historialpeticiones WHERE id_imm = '${req.body.id}' AND tipo = ${req.body.tipo}`
-        // connection.query(DELETE_QUERY, (err, res) =>{
-        //     if(err) console.log(err)
-        //     else{
-        //         var idIndicadores = res.map(function(x) {
-        //             return x.id;
-        //          });
-        //          for(let i=0; i < idIndicadores.length ; i++){ 
-        //             const ADD_QUERY = `UPDATE historialpeticiones SET id_imm = '${req.body.D}' WHERE id_imm = "${req.body.id}" AND tipo = ${req.body.tipo};`
-        //             connection.query(ADD_QUERY, (err) =>{
-        //                 if(err) console.log(err)
-        //             })   
-        //         }
-        //     }
-        // })
+    public async  setHistorial(request : Request, response : Response){
+        const DELETE_QUERY = `SELECT id_imm FROM historialpeticiones WHERE id_imm = '${request.body.id}' AND tipo = ${request.body.tipo}`
+        persistence.query(DELETE_QUERY, (err : any, response : any) =>{
+            if(err) console.log(err)
+            else{
+                var idIndicadores = response.map(function(x : any) {
+                    return x.id;
+                 });
+                 for(let i=0; i < idIndicadores.length ; i++){ 
+                    const ADD_QUERY = `UPDATE historialpeticiones SET id_imm = '${request.body.D}' WHERE id_imm = "${request.body.id}" AND tipo = ${request.body.tipo};`
+                    persistence.query(ADD_QUERY, (err : any) =>{
+                        if(err) console.log(err)
+                    })   
+                }
+            }
+        })
 
     }
 }
