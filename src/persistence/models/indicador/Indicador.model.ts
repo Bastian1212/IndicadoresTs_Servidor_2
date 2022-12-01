@@ -10,17 +10,19 @@ class  IndicadorModel extends Model<Indicador> {
 
 IndicadorModel.init({
     id: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        autoIncrement: true,
-        primaryKey: true,
+        type: DataTypes.STRING,
+        allowNull: false,
+       
     },
+    
     CalificacionCORFO: {
         type: DataTypes.STRING,
         allowNull: false,
     },
     NumeroIndicador: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.INTEGER.UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true,
     },
 
     MisionUniversitaria: {

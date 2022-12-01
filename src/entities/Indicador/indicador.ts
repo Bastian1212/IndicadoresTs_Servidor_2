@@ -1,7 +1,7 @@
  export class Indicador{
-    public id: number;
+    public id: string;
     public CalificacionCORFO : string;
-    public NumeroIndicador: string;
+    public NumeroIndicador: number;
     public MisionUniversitaria : string;
     public nombre : string;
     public TipoIndicador:  string;
@@ -15,9 +15,9 @@
     public antiguaid : string;
 
 
-    constructor(id : number,
+    constructor(id : string,
                 CalificacionCORFO : string,
-                NumeroIndicador : string,
+                NumeroIndicador : number,
                 MisionUniversitaria : string,
                 nombre : string,
                 TipoIndicador : string,
@@ -44,7 +44,6 @@
                 this.Frecuencia =  Frecuencia; 
                 this.Aprobado = Aprobado;
                 this.peticion = peticion;
-                
                 this.antiguaid =antiguaid;
     }
         

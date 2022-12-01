@@ -16,11 +16,12 @@ class IndicadorController {
     }
 
     public createIndicador (request : Request ,response : Response) {
-        
+        let sid : string = request.body.NumeroIndicador;
+        console.log(sid);
         let indicador = new Indicador(
             request.body.id,
             request.body.CalificacionCORFO, 
-            request.body.NumeroIndicador, 
+            parseInt(sid,10), 
             request.body.MisionUniversitaria,
             request.body.nombre,
             request.body.TipoIndicador, 
@@ -76,11 +77,11 @@ class IndicadorController {
     
 
     public editarProyecto(request : Request ,response : Response){
-
+        let sid : string = request.body.NumeroIndicador;
         let indicador = new Indicador(
             request.body.id,
             request.body.CalificacionCORFO, 
-            request.body.NumeroIndicador, 
+            parseInt(sid,10), 
             request.body.MisionUniversitaria,
             request.body.nombre,
             request.body.TipoIndicador, 
