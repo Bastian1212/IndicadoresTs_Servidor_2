@@ -75,7 +75,7 @@ class IndicadorController {
         })
     }
     
-
+//
     public editarProyecto(request : Request ,response : Response){
         let sid : string = request.body.NumeroIndicador;
         let indicador = new Indicador(
